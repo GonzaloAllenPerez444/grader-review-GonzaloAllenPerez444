@@ -43,3 +43,20 @@ else
 fi
 java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples
 
+java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > failures.txt
+grep "Failures: 1" failures.txt > failures1.txt
+grep "Failures: 2" failures.txt > failures2.txt
+if [  "$(wc -w < failures1.txt)" -ne 0 ]
+then 
+    echo "Score: 1/2"
+elif [ "$(wc -w < failures2.txt)" -ne 0  ]
+then 
+    echo "Score: 0/2"
+else
+    echo "Score: 2/2"
+fi
+
+
+
+
+
